@@ -1,0 +1,76 @@
+$colors: (
+    one: blue, 
+    two: red, 
+    three: green, 
+    four: yellow
+);
+$color-secondary: lightgrey;
+$text-color: #e3e;
+
+@function color($color){
+    @return map-get($colors, $color);
+}
+
+@mixin left-arrow($angle){
+    transform: rotate($angle);
+    clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+}
+@mixin right-arrow($angle){
+    transform: rotate($angle);
+    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+
+.container{
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-auto-rows: minmax(10px, 200px);
+    grid-gap: 10px;
+}
+.item{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    p{
+        color: $text-color;
+    }
+}
+.item-1{
+    background-color: color(one);
+    grid-area: 1 / 1 / 3 /3;
+    @include left-arrow(30deg);
+}
+.item-2{
+    background-color: color(two);
+    grid-area: 1 / 3 / 3 / 5;
+    @include right-arrow(-60deg);
+}
+.item-3{
+    background-color: color(three);
+    grid-area: 3 / 1 / 5 /3;
+}
+.item-4{
+    background-color: color(four);
+    grid-area: 3 / 3 / 5 / 5;
+}
+.item-5{
+    background-color: $color-secondary;
+    grid-area: 2 / 2 / 4 / 4;
+}
+.item-6{
+    background-color: $color-secondary;
+    grid-area: 1 / 1 / 2 / 2;
+}
+.item-7{
+    background-color: $color-secondary;
+    grid-area: 4 / 4 / 5 / 5;
+}
+
+
+
+
+
+
